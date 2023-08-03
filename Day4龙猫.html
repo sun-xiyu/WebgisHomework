@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .drawBoard {
+        position: relative;
+        width: 800px;
+        height: 800px;
+        left: 20%;
+        top: 100px;
+        /* border: 2px solid black; */
+        /* animation: move1 2s linear infinite; */
+        animation: move2 4s linear infinite;
+      }
+      /* @keyframes move1 {
+        0% {
+          top: 100px;
+        }
+        55% {
+          top: 290px;
+        }
+        100% {
+          top: 100px;
+        }
+      } */
+      @keyframes move2 {
+        0% {
+          left: -20%;
+          top: 100px;
+        }
+        25% {
+          left: 0%;
+          top: 290px;
+        }
+        50% {
+          left: 25%;
+          top: 100px;
+        }
+        75% {
+          left: 50%;
+          top: 290px;
+        }
+        100% {
+          left: 100%;
+          top: 100px;
+        }
+      }
+      .ear1 {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 80px solid transparent;
+        border-bottom: 150px solid rgb(143, 135, 122);
+        border-radius: 50%;
+        transform: rotate(-5deg);
+        position: absolute;
+        right: 400px;
+        top: 20px;
+      }
+      .ear2 {
+        width: 0;
+        height: 0;
+        border-left: 80px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 150px solid rgb(143, 135, 122);
+        border-radius: 50%;
+        transform: rotate(5deg);
+        position: absolute;
+        left: 400px;
+        top: 20px;
+      }
+      .cathead {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background-color: rgb(143, 135, 122);
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .catbody {
+        display: block;
+        width: 380px;
+        height: 380px;
+        background-color: rgb(143, 135, 122);
+        -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        position: absolute;
+        top: 180px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .eye1 {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+        background-color: #fff;
+        border-radius: 40%;
+        position: absolute;
+        left: 37%;
+        top: 180px;
+      }
+      .eye1::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #000;
+        border-radius: 50%;
+        left: 70%;
+        transform: translateX(-50%);
+        top: 15%;
+      }
+      .eye1::before {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 65%;
+        transform: translateX(-50%);
+        top: 25%;
+        z-index: 2;
+      }
+      .eye2 {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+        background-color: #fff;
+        border-radius: 40%;
+        position: absolute;
+        right: 37%;
+        top: 180px;
+      }
+      .eye2::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #000;
+        border-radius: 50%;
+        left: 70%;
+        transform: translateX(-50%);
+        top: 15%;
+      }
+      .eye2::before {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 65%;
+        transform: translateX(-50%);
+        top: 25%;
+        z-index: 2;
+      }
+      .nose {
+        width: 40px;
+        height: 20px;
+        border-radius: 40%;
+        position: absolute;
+        background-color: rgb(4, 0, 8);
+        left: 50%;
+        transform: translateX(-50%);
+        top: 195px;
+        z-index: 5;
+      }
+      .duzi {
+        display: block;
+        width: 310px;
+        height: 280px;
+        background-color: rgb(221, 220, 218);
+        -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        position: absolute;
+        top: 280px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .hand2 {
+        display: block;
+        width: 55px;
+        height: 180px;
+        background-color: rgb(143, 135, 122);
+        -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        transform: rotate(30deg);
+        position: absolute;
+        right: 25%;
+        top: 220px;
+        z-index: -1;
+        animation: auto-hand2 2s linear infinite;
+      }
+      @keyframes auto-hand2 {
+        0% {
+          transform: rotate(30deg);
+        }
+        55% {
+          transform: rotate(100deg);
+        }
+        100% {
+          transform: rotate(30deg);
+        }
+      }
+      .hand1 {
+        display: block;
+        width: 55px;
+        height: 180px;
+        background-color: rgb(143, 135, 122);
+        -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        transform: rotate(-30deg);
+        position: absolute;
+        left: 25%;
+        top: 220px;
+        z-index: -1;
+        /* border: 3px solid #000; */
+        animation: auto-hand1 2s linear infinite;
+      }
+      @keyframes auto-hand1 {
+        0% {
+          transform: rotate(-30deg);
+        }
+        55% {
+          transform: rotate(-100deg);
+        }
+        100% {
+          transform: rotate(-30deg);
+        }
+      }
+      .makeup {
+        margin: 20px;
+        width: 40px;
+        height: 20px;
+        border-radius: 40%;
+        /* position: absolute; */
+        background-color: rgb(157, 148, 135);
+        transform: rotate(-30deg);
+      }
+      .makeup::before {
+        content: "";
+        width: 40px;
+        height: 20px;
+        border-radius: 40%;
+        position: absolute;
+        background-color: rgb(157, 148, 135);
+        left: 42%;
+        top: 10px;
+        transform: rotate(60deg);
+      }
+      .box1 {
+        width: 250px;
+        height: 50px;
+        /* background-color: aquamarine; */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-53%);
+        top: 320px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box2 {
+        width: 300px;
+        height: 50px;
+        /* background-color: aquamarine; */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-53%);
+        top: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .huzi1 {
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        transform: rotate(18deg);
+        left: 24%;
+        top: 190px;
+      }
+      .huzi1::after {
+        content: "";
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        left: 10px;
+        top: 25px;
+        transform: rotate(-18deg);
+      }
+      .huzi1::before {
+        content: "";
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        left: 15px;
+        top: 50px;
+        transform: rotate(-36deg);
+      }
+      .huzi2 {
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        transform: rotate(-18deg);
+        right: 24%;
+        top: 190px;
+      }
+      .huzi2::after {
+        content: "";
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        right: 10px;
+        top: 25px;
+        transform: rotate(18deg);
+      }
+      .huzi2::before {
+        content: "";
+        width: 80px;
+        height: 5px;
+        border-radius: 30%;
+        background-color: #000;
+        position: absolute;
+        right: 15px;
+        top: 50px;
+        transform: rotate(36deg);
+      }
+      .ground {
+        width: 100%;
+        height: 200px;
+        background-color: #4a3207;
+        position: relative;
+        bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="drawBoard">
+      <div class="ear1"></div>
+      <div class="ear2"></div>
+      <div class="cathead"></div>
+      <div class="catbody"></div>
+      <div class="eye1"></div>
+      <div class="eye2"></div>
+      <div class="nose"></div>
+      <div class="duzi"></div>
+      <div class="box1">
+        <div class="makeup"></div>
+        <div class="makeup"></div>
+        <div class="makeup"></div>
+      </div>
+      <div class="box2">
+        <div class="makeup"></div>
+        <div class="makeup"></div>
+        <div class="makeup"></div>
+        <div class="makeup"></div>
+      </div>
+      <div class="hand1"></div>
+      <div class="hand2"></div>
+      <div class="huzi1"></div>
+      <div class="huzi2"></div>
+    </div>
+    <div class="ground"></div>
+  </body>
+</html>
